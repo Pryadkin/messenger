@@ -1,6 +1,6 @@
 .wrapper {
     height: calc(100vh - 100px);
-    background-color: rgb(208, 208, 208);
+    // background-color: rgb(208, 208, 208);
     overflow-y: scroll;
 }
 
@@ -12,7 +12,7 @@
 .messageList {
     width: 80%;
     margin: 0 auto;
-    background-color: rgb(208, 208, 208);
+    // background-color: rgb(208, 208, 208);
     padding-bottom: 50px;
     flex-direction: column;
     justify-content: flex-end;
@@ -24,4 +24,18 @@
     background-color: #fff;
     width: fit-content;
     border-radius: 5px;
+}
+
+.spinContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ant-spin .ant-spin-spinning .ant-spin-show-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

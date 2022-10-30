@@ -3,11 +3,12 @@ import {createSlice} from '@reduxjs/toolkit'
 
 interface Message {
     id: number,
-    message: string,
+    message: string | null,
+    mediaBlobUrl: string | null,
 }
 
 export interface MessagesState {
-    messages: Message[]
+    messages: Message[],
 }
 
 const initialState: MessagesState = {
@@ -24,7 +25,6 @@ export const messagesSlice = createSlice({
     },
 })
 
-// Action creators are generated for each case reducer function
 export const {addMessage} = messagesSlice.actions
 
 export default messagesSlice.reducer

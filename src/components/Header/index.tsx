@@ -8,6 +8,5 @@ export const Header = () => (
             <div className={styles.logo}>LOGO</div>
             <div className={styles.title}>IT переводчик</div>
         </div>
-
     </div>
 )

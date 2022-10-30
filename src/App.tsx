@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 
 import {
@@ -7,9 +7,10 @@ import {
     MessageList,
     InputContainer,
 } from './components'
+import {RecordingStatus} from './features/recording/recordingReducer'
 import {RootState} from './store'
 
-import styles from './App.module.scss'
+// import styles from './App.module.scss'
 
 const App = () => {
     // const webSocket = new WebSocket('ws://localhost:8080')
@@ -26,23 +27,17 @@ const App = () => {
     // })
 
     const messages = useSelector((state: RootState) => state.messageList.messages)
+    const recordingStatus = useSelector((state: RootState) => state.recording.recordingStatus)
     const dispatch = useDispatch()
 
     const [inputValue, setInputValue] = useState<string>()
-    const [messageElemHeight, setMessageElemHeight] = useState<React.RefObject<HTMLInputElement>>()
     const messageListRef = useRef<null | HTMLDivElement>()
 
     const handleValue = ({target}: any) => {
         setInputValue(target.value)
     }
     const handleKeyDown = ({key, target}: any) => {
-        // messageListRef.current.scrollIntoView({
-        //     behavior: 'smooth',
-        //     block: 'end',
-        //     alignToTop: true,
-        // })
         if (key === 'Enter') {
-            // messageListRef.current?.scrollIntoView(true)
             messageListRef?.current?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'end',
@@ -58,10 +53,14 @@ const App = () => {
         }
     }
 
-    const handleMessagePosition = (elem: any) => {
-        console.log(elem)
-        setMessageElemHeight(elem)
-    }
+    useEffect(() => {
+        if (recordingStatus === RecordingStatus.STOPPED) {
+            messageListRef?.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'end',
+            })
+        }
+    }, [dispatch, recordingStatus])
 
     return (
         <div className="App">
@@ -69,7 +68,7 @@ const App = () => {
             <MessageList
                 ref={messageListRef}
                 list={messages}
-                getMessagePosition={handleMessagePosition}
+                recordingStatus={recordingStatus}
             />
 
             <InputContainer

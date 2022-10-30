@@ -1,10 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit'
 
 import messagesReducer from './features/message/messagesReducer'
+import recordingReducer from './features/recording/recordingReducer'
 
 export const store = configureStore({
     reducer: {
         messageList: messagesReducer,
+        recording: recordingReducer,
     },
 })
 

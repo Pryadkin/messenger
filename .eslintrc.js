@@ -26,6 +26,13 @@ module.exports = {
         },
     },
     rules: {
+        // less strict rules for redux toolkit
+        "no-param-reassign": ['warn', {
+            props: true,
+            ignorePropertyModificationsFor: [
+                'state',
+            ]
+        }],
         "semi": ["error", "never"],
         "@typescript-eslint/semi": ["error", "never"],
         // allow parens in arrow function arguments as-needed https://eslint.org/docs/rules/arrow-parens
