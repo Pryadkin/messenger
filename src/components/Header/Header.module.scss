@@ -1,0 +1,19 @@
+.wrapper {
+    height: 50px;
+    background-color: lightgray;
+}
+
+.logoContainer {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    padding-left: 30px;
+}
+
+.title {
+    padding-left: 30px;
+    font-weight: 600;
+}
